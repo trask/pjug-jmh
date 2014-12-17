@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  <meta name="keywords" content="remark,remarkjs,markdown,slideshow,presentation"/>
+  <meta name="description" content="A simple, in-browser, markdown-driven slideshow tool."/>
+  <title>JMH</title>
+  <style type="text/css">
+    @import url(//fonts.googleapis.com/css?family=Droid+Serif);
+    @import url(//fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+    body {
+      font-family: 'Droid Serif';
+    }
+
+    h1, h2, h3 {
+      font-family: 'Yanone Kaffeesatz';
+      font-weight: 400;
+      margin-bottom: 0;
+    }
+
+    .remark-slide-content h1 {
+      font-size: 3em;
+    }
+
+    .remark-slide-content h2 {
+      font-size: 2em;
+    }
+
+    .remark-slide-content h3 {
+      font-size: 1.6em;
+    }
+
+    .footnote {
+      position: absolute;
+      bottom: 3em;
+    }
+
+    li p {
+      line-height: 1.25em;
+    }
+
+    .red {
+      color: #fa0000;
+    }
+
+    .large {
+      font-size: 2em;
+    }
+
+    a, a > code {
+      color: black;
+      text-decoration: none;
+    }
+
+    code {
+      -moz-border-radius: 5px;
+      -web-border-radius: 5px;
+      background: #e7e8e2;
+      border-radius: 5px;
+    }
+
+    .remark-code, .remark-inline-code {
+      font-family: 'Ubuntu Mono';
+    }
+
+    .remark-code-line-highlighted {
+      background-color: #373832;
+    }
+
+    .pull-left {
+      float: left;
+      width: 47%;
+    }
+
+    .pull-right {
+      float: right;
+      width: 47%;
+    }
+
+    .pull-right ~ p {
+      clear: both;
+    }
+
+    #slideshow .slide .content code {
+      font-size: 0.8em;
+    }
+
+    #slideshow .slide .content pre code {
+      font-size: 0.9em;
+      padding: 15px;
+    }
+
+    .inverse {
+      background: #272822;
+      color: #777872;
+      text-shadow: 0 0 20px #333;
+    }
+
+    .inverse h1, .inverse h2 {
+      color: #f3f3f3;
+      line-height: 0.8em;
+    }
+
+    /* Slide-specific styling */
+    #slide-inverse .footnote {
+      bottom: 12px;
+      left: 20px;
+    }
+
+    #slide-how .slides {
+      font-size: 0.9em;
+      position: absolute;
+      top: 151px;
+      right: 140px;
+    }
+
+    #slide-how .slides h3 {
+      margin-top: 0.2em;
+    }
+
+    #slide-how .slides .first, #slide-how .slides .second {
+      padding: 1px 20px;
+      height: 90px;
+      width: 120px;
+      -moz-box-shadow: 0 0 10px #777;
+      -webkit-box-shadow: 0 0 10px #777;
+      box-shadow: 0 0 10px #777;
+    }
+
+    #slide-how .slides .first {
+      background: #fff;
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      z-index: 1;
+    }
+
+    #slide-how .slides .second {
+      position: relative;
+      background: #fff;
+      z-index: 0;
+    }
+
+    /* Two-column layout */
+    .left-column {
+      color: #777;
+      width: 17%;
+      height: 92%;
+      float: left;
+    }
+
+    .left-column h2:last-of-type, .left-column h3:last-child {
+      color: #000;
+    }
+
+    .right-column {
+      width: 80%;
+      float: right;
+      padding-top: 1em;
+    }
+
+    .vcenter h1, .vcenter h2 {
+      margin-top: 0;
+    }
+
+    /* more horizontal realestate */
+    .remark-slide-content {
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+
+    .right-column-incremental {
+      width: 80%;
+      float: right;
+    }
+
+    .right-column-incremental {
+      width: 80%;
+      float: right;
+    }
+
+    .fixed-width-250 {
+      display: inline-block;
+      width: 250px;
+    }
+
+    code.bash {
+      font-size: 16px;
+    }
+
+    .smaller code.bash {
+      font-size: 14px;
+    }
+
+    code.x86asm {
+      font-size: 16px;
+    }
+
+    .smaller code.x86asm {
+      font-size: 14px;
+    }
+
+    .monospace {
+      font-family: 'Ubuntu Mono';
+    }
+
+    .section-top-padding {
+      padding-top: 30px;
+    }
+
+    .smaller {
+      font-size: 18px;
+    }
+
+    .smallest {
+      font-size: 12px;
+    }
+
+    .inline-highlighted {
+      background-color: #e28964;
+      padding: 3px 2px;
+      margin: 0 -2px;
+    }
+
+    .inline-highlighted-thin {
+      background-color: #e28964;
+      padding: 0 2px;
+      margin: 0 -2px;
+    }
+
+    .h3smaller {
+      font-size: 24px;
+    }
+
+    .jmc-image img {
+      margin-top: 30px;
+      width: 655px;
+    }
+
+    .cache-line-image img {
+      width: 480px;
+    }
+
+    .cache-line-caption {
+      font-size: 12px;
+      margin-left: 20px;
+      margin-top: -10px;
+      display: block;
+    }
+
+    .supersmall code.bash {
+      font-size: 8px;
+    }
+
+    .caption {
+      font-size: 14px;
+    }
+
+    .extra-indent {
+      margin-left: 20px;
+    }
+
+    .recap-top-padding {
+      margin-top: 90px;
+    }
+
+    .right-column h3 {
+      margin-top: 20px;
+    }
+
+    .restrict-contended code {
+      display: inline-block !important;
+      margin-left: 30px;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+      font-size: 18px;
+    }
+    
+    .references {
+      padding-top: 6px;
+    }
+	
+	.fine-print {
+	  padding-top: 6px;
+	}
+	
+	.extra-top-padding {
+	  padding-top: 20px;
+	}
+  </style>
+</head>
+<body>
+<textarea id="source">
+class: center, middle
+.vcenter[
+# JMH
+Java Microbenchmarking Harness
+]
+
+
+
+---
+.left-column[
+## DIY
+]
+.right-column[
+```
+  void harness(int iterations) {
+      long start = System.currentTimeMillis();
+      for (int i = 0; i < iterations; i++) {
+          benchmark();
+      }
+      long end = System.currentTimeMillis();
+      System.out.println(end - start);
+  }
+
+  void benchmark() {
+*     new ArrayList<>();
+  }
+```
+]
+--
+.right-column[.monospace[
+.fixed-width-250[iterations=1,000] total time=1ms
+]]
+--
+.right-column[.monospace[
+.fixed-width-250[iterations=10,000] total time=3ms
+]]
+--
+.right-column[.monospace[
+.fixed-width-250[iterations=100,000] total time=7ms
+]]
+--
+.right-column[.monospace[
+.fixed-width-250[iterations=1,000,000] total time=7ms
+]]
+--
+.right-column[.monospace[
+.fixed-width-250[iterations=10,000,000] total time=7ms
+]]
+--
+.right-column[.monospace[
+.fixed-width-250[iterations=100,000,000] total time=7ms
+]]
+
+
+
+---
+.left-column[
+## Does this change anything?
+]
+.right-column[
+```
+  void harness(int iterations) {
+      long start = System.currentTimeMillis();
+      for (int i = 0; i < iterations; i++) {
+          benchmark();
+      }
+      long end = System.currentTimeMillis();
+      System.out.println(end - start);
+  }
+
+  void benchmark() {
+*     new HashMap<>();
+  }
+```
+]
+--
+.right-column[.monospace[
+.fixed-width-250[iterations=1,000] total time=1ms
+]]
+--
+.right-column[.monospace[
+.fixed-width-250[iterations=10,000] total time=9ms
+]]
+--
+.right-column[.monospace[
+.fixed-width-250[iterations=100,000] total time=17ms
+]]
+--
+.right-column[.monospace[
+.fixed-width-250[iterations=1,000,000] total time=65ms
+]]
+--
+.right-column[.monospace[
+.fixed-width-250[iterations=10,000,000] total time=459ms
+]]
+--
+.right-column[.monospace[
+.fixed-width-250[iterations=100,000,000] total time=4251ms
+]]
+
+
+
+---
+.left-column[
+## JMH to the rescue?
+]
+.right-column[
+```
+  public class PJUG01 {
+
+*     @Benchmark
+*     public void newArrayList() {
+*         new ArrayList<>();
+*     }
+  }
+```
+]
+--
+.right-column-incremental[.monospace[.section-top-padding[.smaller[
+java -jar target/benchmarks.jar PJUG01
+]]]]
+--
+.right-column-incremental[
+```bash
+  Benchmark                  Score   Error  Units
+  o.e.PJUG01.newArrayList    0.382 &plusmn; 0.007  ns/op
+```
+]
+--
+.right-column-incremental[.monospace[.section-top-padding[.smaller[
+java -jar target/benchmarks.jar PJUG01 .inline-highlighted[-f 1] .inline-highlighted[-prof gc]
+]]]]
+--
+.right-column-incremental[
+```bash
+  Benchmark                                    Score   Error   Units
+  o.e.PJUG01.newArrayList                       0.382 &plusmn; 0.007   ns/op
+* o.e.PJUG01.newArrayList:@gc.count.profiled    0.000 &plusmn;   NaN  counts
+* o.e.PJUG01.newArrayList:@gc.time.profiled     0.000 &plusmn;   NaN      ms
+```
+]
+
+
+
+---
+.left-column[
+## Rule #1: Prevent dead code elimination
+]
+--
+.right-column[
+```
+  public class PJUG02 {
+
+      @Benchmark
+      public Object newArrayList() {
+*         return new ArrayList<>();
+      }
+  }
+```
+]
+--
+.right-column-incremental[.monospace[.section-top-padding[.smaller[
+java -jar target/benchmarks.jar PJUG02
+]]]]
+--
+.right-column-incremental[
+```bash
+  Benchmark                  Score   Error  Units
+  o.e.PJUG02.newArrayList    5.618 &plusmn; 0.122  ns/op
+```
+]
+--
+.right-column-incremental[.monospace[.section-top-padding[.smaller[
+java -jar target/benchmarks.jar PJUG02 -f 1 .inline-highlighted[-prof gc]
+]]]]
+--
+.right-column-incremental[
+```bash
+  Benchmark                                       Score   Error   Units
+  o.e.PJUG02.newArrayList                         5.618 &plusmn; 0.122   ns/op
+* o.e.PJUG02.newArrayList:@gc.count.profiled    181.000 &plusmn;   NaN  counts
+* o.e.PJUG02.newArrayList:@gc.time.profiled     145.000 &plusmn;   NaN      ms
+```
+]
+
+
+
+---
+.left-column[
+## Rule #1: (The blackhole option)
+]
+.right-column[
+```
+  public class PJUG03 {
+
+      @Benchmark
+      public void newArrayList(Blackhole blackhole) {
+*         blackhole.consume(new ArrayList<>());
+      }
+  }
+```
+]
+--
+.right-column-incremental[.monospace[.section-top-padding[.smaller[
+java -jar target/benchmarks.jar PJUG03
+]]]]
+--
+.right-column-incremental[
+```bash
+  Benchmark                  Score   Error  Units
+  o.e.PJUG03.newArrayList    5.479 &plusmn; 0.020  ns/op
+```
+]
+
+
+
+---
+.left-column[
+## What's the problem with this?
+]
+.right-column[
+```
+  public class PJUG04 {
+
+      @Benchmark
+      public double logarithm() {
+*         return Math.log(31);
+      }
+  }
+```
+]
+--
+.right-column-incremental[.monospace[.section-top-padding[.smaller[
+java -jar target/benchmarks.jar PJUG04
+]]]]
+--
+.right-column-incremental[
+```bash
+  Benchmark               Score   Error  Units
+  o.e.PJUG04.logarithm    3.027 &plusmn; 0.010  ns/op
+```
+]
+
+
+
+---
+.left-column[
+## Rule #2: Prevent constant folding
+]
+--
+.right-column[
+```
+* @State(Scope.Thread)
+  public class PJUG05 {
+
+*     private int x = 31;
+
+      @Benchmark
+      public double logarithm() {
+          return Math.log(x);
+      }
+  }
+```
+]
+--
+.right-column-incremental[
+```bash
+  Benchmark                Score   Error  Units
+  o.e.PJUG04.logarithm     3.027 &plusmn; 0.010  ns/op
+* o.e.PJUG05.logarithm    35.747 &plusmn; 0.065  ns/op
+```
+]
+
+
+
+---
+.left-column[
+## Don't listen to your IDE
+]
+.right-column[
+```
+  @State(Scope.Thread)
+  public class PJUG06 {
+
+*     private final int x = 31;
+
+      @Benchmark
+      public double logarithm() {
+          return Math.log(x);
+      }
+  }
+```
+]
+--
+.right-column-incremental[
+```bash
+  Benchmark               Score   Error  Units
+  o.e.PJUG04.logarithm     3.027 &plusmn; 0.010  ns/op
+  o.e.PJUG05.logarithm    35.747 &plusmn; 0.065  ns/op
+* o.e.PJUG06.logarithm     3.010 &plusmn; 0.008  ns/op
+```
+]
+
+
+
+---
+.left-column[
+## Or, trick your IDE
+]
+.right-column[
+```
+  @State(Scope.Thread)
+  public class PJUG07 {
+
+      private int x;
+
+*     @Setup
+*     public void setup() {
+*         x = 31;
+*     }
+
+      @Benchmark
+      public double logarithm() {
+          return Math.log(x);
+      }
+  }
+```
+]
+--
+.right-column-incremental[
+```bash
+  Benchmark                Score   Error  Units
+  o.e.PJUG04.logarithm     3.027 &plusmn; 0.010  ns/op
+  o.e.PJUG05.logarithm    35.747 &plusmn; 0.065  ns/op
+  o.e.PJUG06.logarithm     3.010 &plusmn; 0.008  ns/op
+* o.e.PJUG07.logarithm    35.538 &plusmn; 0.104  ns/op
+```
+]
+
+
+
+---
+class: center, middle
+.vcenter[
+## JMH Golden Rules
+
+### #1: Always return output .h3smaller[(or use Blackhole)]
+
+to prevent dead code elimination
+
+### #2: Always read input from state objects
+
+to prevent constant folding
+]
+
+
+
+---
+class: center, middle
+.vcenter[
+## Now for fun and profit!
+]
+
+
+
+---
+.left-column[
+## What's the overhead of a method call?
+]
+--
+.right-column[
+```java
+  @State(Scope.Thread)
+  public class PJUG08 {
+
+      private int x;
+    
+      @Setup
+      public void setup() {
+          x = 0;
+      }
+    
+      @Benchmark
+      public int harnessOverhead() {
+*         return x;
+      }
+  }
+```
+]
+--
+.right-column-incremental[
+```bash
+  Benchmark                     Score   Error  Units
+  o.e.PJUG08.harnessOverhead    2.998 &plusmn; 0.007  ns/op
+```
+]
+
+
+
+---
+.left-column[
+## Now down to business
+]
+.right-column[
+```java
+  @State(Scope.Thread)
+  public class PJUG09 {
+
+      private Map<Integer, Integer> map;
+
+      @Setup
+      public void setup() {
+          map = new HashMap<>();
+      }
+
+      @Benchmark
+      public int mapSize() {
+*         return map.size();
+      }
+  }
+```
+]
+--
+.right-column-incremental[
+```bash
+  Benchmark                     Score   Error  Units
+  o.e.PJUG08.harnessOverhead    2.998 &plusmn; 0.007  ns/op
+* o.e.PJUG09.mapSize            3.443 &plusmn; 0.015  ns/op
+```
+]
+
+
+
+---
+.left-column[
+## Does this change anything?
+]
+.right-column[
+```java
+  @State(Scope.Thread)
+  public class PJUG10 {
+
+      private Map<Integer, Integer> map;
+
+      @Setup
+      public void setup() {
+*         map = new LinkedHashMap<>();
+*         for (int i = 0; i < 1000; i++) {
+*             mapSize();
+*         }
+          map = new HashMap<>();
+      }
+
+      @Benchmark
+      public int mapSize() {
+          return map.size();
+      }
+  }
+```
+]
+--
+.right-column-incremental[
+```bash
+  Benchmark                     Score   Error  Units
+  o.e.PJUG08.harnessOverhead    2.998 &plusmn; 0.007  ns/op
+  o.e.PJUG09.mapSize            3.443 &plusmn; 0.015  ns/op
+* o.e.PJUG10.mapSize            3.484 &plusmn; 0.025  ns/op
+```
+]
+
+
+
+---
+.left-column[
+## What about this?
+]
+.right-column[
+```java
+  @State(Scope.Thread)
+  public class PJUG11 {
+
+      private Map<Integer, Integer> map;
+
+      @Setup
+      public void setup() {
+          map = new LinkedHashMap<>();
+          for (int i = 0; i < 1000; i++) {
+              mapSize();
+          }
+*         map = new TreeMap<>();
+*         for (int i = 0; i < 1000; i++) {
+*             mapSize();
+*         }
+          map = new HashMap<>();
+      }
+
+      @Benchmark
+      public int mapSize() { return map.size(); }
+  }
+```
+]
+--
+.right-column-incremental[
+```bash
+  Benchmark                     Score   Error  Units
+  o.e.PJUG08.harnessOverhead    2.998 &plusmn; 0.007  ns/op
+  o.e.PJUG09.mapSize            3.443 &plusmn; 0.015  ns/op
+  o.e.PJUG10.mapSize            3.484 &plusmn; 0.025  ns/op
+* o.e.PJUG11.mapSize            5.409 &plusmn; 0.026  ns/op
+```
+]
+
+
+
+---
+.left-column[
+## A more realistic example
+]
+.right-column[
+```java
+  @State(Scope.Thread)
+  public class PJUG12 {
+
+      private Map<Integer, Integer> map;
+
+      @Setup
+      public void setup() {
+*         map = ImmutableMap.of();
+          for (int i = 0; i < 1000; i++) {
+              mapSize();
+          }
+*         map = ImmutableMap.of(1, 1);
+          for (int i = 0; i < 1000; i++) {
+              mapSize();
+          }
+*         map = ImmutableMap.of(1, 1, 2, 2);
+      }
+
+      @Benchmark
+      public int mapSize() { return map.size(); }
+  }
+```
+]
+--
+.right-column-incremental[
+```bash
+  Benchmark                     Score   Error  Units
+  o.e.PJUG08.harnessOverhead    2.998 &plusmn; 0.007  ns/op
+  o.e.PJUG09.mapSize            3.443 &plusmn; 0.015  ns/op
+  o.e.PJUG10.mapSize            3.484 &plusmn; 0.025  ns/op
+  o.e.PJUG11.mapSize            5.409 &plusmn; 0.026  ns/op
+* o.e.PJUG12.mapSize            5.505 &plusmn; 0.006  ns/op
+```
+]
+???
+https://github.com/google/guava/commit/b2f0d0fad93f11bb86a2ce1770bcb43fd014fa06
+
+
+
+---
+class: center, middle
+.vcenter[
+#Down the rabbit hole
+Courtesy of -XX:+PrintAssembly and JITWatch
+]
+
+
+
+---
+
+## Monomorphic call site (HashMap only type seen at call site)
+
+```
+    public int mapSize() {
+*       return map.size();
+    }
+```
+
+```x86asm
+    [Verified Entry Point]
+    0x0000000002b5d1b0: mov %eax,-0x6000(%rsp)
+    0x0000000002b5d1b7: push %rbp
+    0x0000000002b5d1b8: sub $0x10,%rsp  ;*synchronization entry
+                                        ; - org.example.PJUG09::mapSize@-1 (line 44)
+    0x0000000002b5d1bc: mov 0xc(%rdx),%r11d  ;*getfield map
+                                             ; - org.example.PJUG09::mapSize@1 (line 44)
+    0x0000000002b5d1c0: mov 0x8(%r11),%r10d  ; implicit exception: dispatches to 0x0000000002b5d1f1
+    0x0000000002b5d1c4: cmp $0x16d4c708,%r10d  ;   {metadata('java/util/HashMap')}
+*(A) 0x0000000002b5d1cb: jne 0x0000000002b5d1e0
+    0x0000000002b5d1cd: mov %r11,%r10  ;*invokeinterface size
+                                       ; - org.example.PJUG09::mapSize@4 (line 44)
+    0x0000000002b5d1d0: mov 0x14(%r10),%eax  ;*getfield size
+                                             ; - java.util.HashMap::size@1 (line 525)
+                                             ; - org.example.PJUG09::mapSize@4 (line 44)
+    0x0000000002b5d1d4: add $0x10,%rsp
+    0x0000000002b5d1d8: pop %rbp
+    0x0000000002b5d1d9: test %eax,-0xa3d1df(%rip)  # 0x0000000002120000
+                                                   ;   {poll_return}
+    0x0000000002b5d1df: retq
+*(B) 0x0000000002b5d1e0: mov $0xffffffde,%edx
+    ...
+```
+
+
+
+---
+## Bimorphic call site (HashMap and LinkedHashMap)
+
+```x86asm
+    [Verified Entry Point]
+    0x0000000002cf4d30: mov %eax,-0x6000(%rsp)
+    0x0000000002cf4d37: push %rbp
+    0x0000000002cf4d38: sub $0x10,%rsp  ;*synchronization entry
+                                        ; - org.example.PJUG10::mapSize@-1 (line 49)
+    0x0000000002cf4d3c: mov 0xc(%rdx),%r11d  ;*getfield map
+                                             ; - org.example.PJUG10::mapSize@1 (line 49)
+    0x0000000002cf4d40: mov 0x8(%r11),%r10d  ; implicit exception: dispatches to 0x0000000002cf4d7d
+    0x0000000002cf4d44: mov %r11,%r8
+    0x0000000002cf4d47: cmp $0x16e8c708,%r10d  ;   {metadata('java/util/HashMap')}
+*(A) 0x0000000002cf4d4e: jne 0x0000000002cf4d60  ;*invokeinterface size
+                                                ; - org.example.PJUG10::mapSize@4 (line 49)
+    0x0000000002cf4d50: mov 0x14(%r8),%eax  ;*synchronization entry
+                                            ; - org.example.PJUG10::mapSize@-1 (line 49)
+    0x0000000002cf4d54: add $0x10,%rsp
+    0x0000000002cf4d58: pop %rbp
+    0x0000000002cf4d59: test %eax,-0x2aa4d5f(%rip)  # 0x0000000000250000
+                                                    ;   {poll_return}
+    0x0000000002cf4d5f: retq
+*(B) 0x0000000002cf4d60: cmp $0x16e97638,%r10d  ;   {metadata('java/util/LinkedHashMap')}
+*(C) 0x0000000002cf4d67: jne 0x0000000002cf4d6f  ;*invokeinterface size
+                                                ; - org.example.PJUG10::mapSize@4 (line 49)
+    0x0000000002cf4d69: mov 0x14(%r8),%eax  ;*getfield size
+                                            ; - java.util.HashMap::size@1 (line 525)
+                                            ; - org.example.PJUG10::mapSize@4 (line 49)
+    0x0000000002cf4d6d: jmp 0x0000000002cf4d54
+*(D) 0x0000000002cf4d6f: mov $0xffffffc6,%edx
+    ...
+```
+
+
+
+---
+## Megamorphic call site (HashMap, LinkedHashMap and TreeMap)
+
+```x86asm
+    [Verified Entry Point]
+    0x0000000002bd4c90: mov %eax,-0x6000(%rsp)
+    0x0000000002bd4c97: push %rbp
+    0x0000000002bd4c98: sub $0x10,%rsp  ;*synchronization entry
+                                        ; - org.example.PJUG11::mapSize@-1 (line 54)
+    0x0000000002bd4c9c: mov 0xc(%rdx),%r10d
+    0x0000000002bd4ca0: mov %r10,%rdx  ;*getfield map
+                                       ; - org.example.PJUG11::mapSize@1 (line 54)
+    0x0000000002bd4ca3: xchg %ax,%ax
+    0x0000000002bd4ca5: movabs $0xffffffffffffffff,%rax
+*   0x0000000002bd4caf: callq 0x0000000002a86120  ; OopMap{off=52}
+*                                                 ;*invokeinterface size
+*                                                 ; - org.example.PJUG11::mapSize@4 (line 54)
+*                                                 ;   {virtual_call}
+    0x0000000002bd4cb4: add $0x10,%rsp
+    0x0000000002bd4cb8: pop %rbp
+    0x0000000002bd4cb9: test %eax,-0x2974cbf(%rip)  # 0x0000000000260000
+                                                    ;   {poll_return}
+    0x0000000002bd4cbf: retq  ;*invokeinterface size
+                              ; - org.example.PJUG11::mapSize@4 (line 54)
+```
+
+
+
+---
+class: center, middle
+.vcenter[
+#No more rabbit holes!
+(back to fun and profit)
+]
+
+
+
+---
+.left-column[
+## What's the overhead of reflection?
+]
+--
+.right-column[
+```java
+  @State(Scope.Thread)
+  public class PJUG13 {
+
+      private String str;
+      private File file;
+   
+      @Setup
+      public void setup() throws Exception {
+          str = null;
+          file = new File(".");
+      }
+   
+      @Benchmark
+      public String harnessOverhead() {
+*         return str;
+      }
+   
+      @Benchmark
+      public String directCall() {
+*         return file.getPath();
+      }
+  }
+```
+]
+--
+.right-column-incremental[
+```bash
+  Benchmark                     Score   Error  Units
+  o.e.PJUG13.harnessOverhead    3.779 &plusmn; 0.015  ns/op
+  o.e.PJUG13.directCall         3.798 &plusmn; 0.009  ns/op
+```
+]
+
+
+
+---
+.left-column[
+## What's the overhead of reflection?
+]
+.right-column[
+```java
+  @State(Scope.Thread)
+  public class PJUG14 {
+
+      private File file;
+
+      @Setup
+      public void setup() throws Exception {
+          file = new File(".");
+      }
+
+      @Benchmark
+      public Object reflection() throws Exception {
+*         Method method = File.class.getMethod("getPath");
+*         return method.invoke(file);
+      }
+  }
+```
+]
+--
+.right-column-incremental[
+```bash
+  Benchmark                       Score    Error  Units
+  o.e.PJUG13.harnessOverhead      3.779 &plusmn;  0.015  ns/op
+  o.e.PJUG13.directCall           3.798 &plusmn;  0.009  ns/op
+* o.e.PJUG14.reflection         461.169 &plusmn; 26.632  ns/op
+```
+]
+
+
+
+---
+.left-column[
+## That last slide was terribly misleading
+]
+.right-column[
+```java
+  @State(Scope.Thread)
+  public class PJUG15 {
+
+      private File file;
+*     private Method method;
+
+      @Setup
+      public void setup() throws Exception {
+          file = new File(".");
+*         method = File.class.getMethod("getPath");
+      }
+
+      @Benchmark
+      public Object reflection() throws Exception {
+          return method.invoke(file);
+      }
+  }
+```
+]
+--
+.right-column-incremental[
+```bash
+  Benchmark                       Score    Error  Units
+  o.e.PJUG13.harnessOverhead      3.779 &plusmn;  0.015  ns/op
+  o.e.PJUG13.directCall           3.798 &plusmn;  0.009  ns/op
+  o.e.PJUG14.reflection         461.169 &plusmn; 26.632  ns/op
+* o.e.PJUG15.reflection           8.415 &plusmn;  0.036  ns/op
+```
+]
+
+
+---
+.left-column[
+## Every last nanosecond counts!
+]
+.right-column[
+```java
+  @State(Scope.Thread)
+  public class PJUG16 {
+
+      private File file;
+      private Method method;
+
+      @Setup
+      public void setup() throws Exception {
+          file = new File(".");
+          method = File.class.getMethod("getPath");
+*         method.setAccessible(true);
+      }
+
+      @Benchmark
+      public Object reflection() throws Exception {
+          return method.invoke(file);
+      }
+  }
+```
+]
+--
+.right-column-incremental[
+```bash
+  Benchmark                       Score    Error  Units
+  o.e.PJUG13.harnessOverhead      4.317 &plusmn;  0.290  ns/op
+  o.e.PJUG13.directCall           4.413 &plusmn;  0.301  ns/op
+  o.e.PJUG14.reflection         629.340 &plusmn; 65.097  ns/op
+  o.e.PJUG15.reflection           8.415 &plusmn;  0.036  ns/op
+* o.e.PJUG16.reflection           7.075 &plusmn;  0.015  ns/op
+```
+]
+
+
+
+---
+.left-column[
+## JMH:<br>multi-threaded benchmark support
+]
+--
+.right-column[
+```
+* @State(Scope.Group)
+  public class PJUG17 {
+
+      private volatile long x;
+      private volatile long y;
+
+*     @Group
+      @Benchmark
+      public long incrementX() {
+          return x++;
+      }
+
+*     @Group
+      @Benchmark
+      public long readY() {
+          return y;
+      }
+  }
+```
+]
+--
+.right-column-incremental[
+```bash
+  Benchmark                       Score   Error  Units
+  o.e.PJUG17.group:incrementX    30.351 &plusmn; 0.763  ns/op
+  o.e.PJUG17.group:readY         10.899 &plusmn; 0.342  ns/op
+```
+]
+
+
+
+---
+.left-column[
+## Wtf?
+]
+.right-column[
+```
+  @State(Scope.Group)
+  public class PJUG18 {
+
+      private volatile long x;
+*     long p1, p2, p3, p4, p5, p6, p7;
+      private volatile long y;
+
+      @Group
+      @Benchmark
+      public int incrementX() {
+          return x++;
+      }
+
+      @Group
+      @Benchmark
+      public int readY() {
+          return y;
+      }
+  }
+```
+]
+--
+.right-column-incremental[
+```bash
+  Benchmark                       Score   Error  Units
+  o.e.PJUG17.group:incrementX    30.351 &plusmn; 0.763  ns/op
+* o.e.PJUG18.group:incrementX    13.414 &plusmn; 0.423  ns/op
+  o.e.PJUG17.group:readY         10.899 &plusmn; 0.342  ns/op
+* o.e.PJUG18.group:readY          3.437 &plusmn; 0.042  ns/op
+```
+]
+
+
+
+---
+.left-column[
+## False sharing
+]
+.right-column[.cache-line-image[
+![Cache line](cache-line.png)
+
+.cache-line-caption[(http://mechanical-sympathy.blogspot.com/2011/07/false-sharing.html)]
+]]
+
+
+
+---
+.left-column[
+## False sharing
+]
+.right-column[
+### @sun.misc.Contended
+
+Introduced in JDK8 to address false sharing.
+]
+--
+.right-column-incremental[
+Used in java.util.concurrent
+
+* ConcurrentHashMap
+
+* Exchanger
+
+* ForkJoinPool
+
+* Striped64
+]
+--
+.right-column-incremental[
+Can only be used outside of the bootstrap class loader with
+
+.restrict-contended[
+```bash
+-XX:-RestrictContended
+```
+]
+]
+
+---
+.left-column[
+## JMH: parameterized benchmark support
+]
+--
+.right-column[.extra-indent[.extra-indent[
+```
+  @State(Scope.Thread)
+  public class PJUG19 {
+
+*     @Param({"2", "4", "8", "16", "32", "64", "128"})
+      private int initialCapacity;
+
+      @Benchmark
+      public Object newArrayList() {
+          List<Integer> list = new ArrayList<>(initialCapacity);
+          for (int i = 0; i < 100; i++) {
+              list.add(i);
+          }
+          return list;
+      }
+  }
+```
+]]]
+--
+.right-column-incremental[.extra-indent[.extra-indent[
+```bash
+  Benchmark                  (initialCapacity)    Score   Error  Units
+  o.e.PJUG19.newArrayList                    2  826.805 &plusmn; 2.626  ns/op
+  o.e.PJUG19.newArrayList                    4  761.433 &plusmn; 2.938  ns/op
+  o.e.PJUG19.newArrayList                    8  683.512 &plusmn; 3.054  ns/op
+  o.e.PJUG19.newArrayList                   16  624.361 &plusmn; 1.933  ns/op
+  o.e.PJUG19.newArrayList                   32  544.332 &plusmn; 5.626  ns/op
+  o.e.PJUG19.newArrayList                   64  549.919 &plusmn; 1.401  ns/op
+  o.e.PJUG19.newArrayList                  128  377.599 &plusmn; 1.135  ns/op
+```
+]]]
+
+
+
+---
+.left-column[
+## JMH: profiling support
+]
+--
+.right-column[.monospace[.section-top-padding[.smaller[
+java -jar target/benchmarks.jar PJUG19 -f 1 .inline-highlighted-thin[-p initialCapacity=10] \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.inline-highlighted-thin[-prof stack]
+]]]]
+--
+.right-column-incremental[
+```bash
+ 99.2%  99.3% org.example.generated.PJUG19_newArrayList.newArrayList_avgt_jmhStub
+  0.6%   0.6% java.util.Arrays.copyOf
+  0.1%   0.1% sun.misc.Unsafe.getIntVolatile
+```
+]
+--
+.right-column-incremental[
+```
+  public void newArrayList_avgt_jmhStub(...) {
+      long operations = 0;
+      long realTime = 0;
+      result.startTime = System.nanoTime();
+      do {
+*         l_blackhole1_1.consume(l_pjug190_0.newArrayList());
+          operations++;
+      } while(!control.isDone);
+      result.stopTime = System.nanoTime();
+      result.realTime = realTime;
+      result.operations = operations;
+  }
+```
+]
+
+
+
+---
+## JMH: the perfasm profiler
+
+.monospace[.section-top-padding[.smaller[
+java -jar target/benchmarks.jar PJUG19 -f 1 -p initialCapacity=10 .inline-highlighted-thin[-prof perfasm]
+]]]
+--
+.smaller[
+```x86asm
+                    ...
+                    ...
+  1.96%    2.54%    0x00007f63f11abdae: cmp    $0x64,%ebx
+  5.27%    6.95%    0x00007f63f11abdb1: jge    0x00007f63f11abc40  ;*if_icmpge
+                                                                  ; - org.example.PJUG19::newArrayList@17 (line 41)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abdb7: mov    %r8,%rcx           ;*aload_1
+                                                                  ; - org.example.PJUG19::newArrayList@20 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  3.68%    4.95%    0x00007f63f11abdba: inc    %esi               ;*iadd
+                                                                  ; - java.util.ArrayList::add@6 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  1.92%    2.14%    0x00007f63f11abdbc: movabs $0x89a0cbe8,%r10   ;   {oop(a &apos;java/lang/Object&apos;[0] )}
+                    0x00007f63f11abdc6: cmp    %r10,%r8
+  2.18%    2.81%    0x00007f63f11abdc9: je     0x00007f63f11abfb2  ;*aload_0
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@17 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  2.11%    2.29%    0x00007f63f11abdcf: mov    0xc(%r11),%r10d    ;*getfield modCount
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@2 (line 231)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abdd3: inc    %r10d
+					...
+					...
+```
+]
+
+
+
+---
+.left-column[
+## Also from Oracle: Java Mission Control
+]
+--
+.right-column[.monospace[.section-top-padding[.smaller[
+java -jar target/benchmarks.jar PJUG19 -f 1 -p initialCapacity=10 \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-jvmArgs ".inline-highlighted-thin[-XX:+UnlockCommercialFeatures -XX:+FlightRecorder \<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-XX:StartFlightRecording=delay=20s,duration=20s,filename=prof.jfr]"
+]]]]
+--
+.right-column-incremental[.jmc-image[
+![JMC profile](prof1.png)
+]]
+--
+.right-column-incremental[.monospace[.section-top-padding[.smaller[
+java -jar target/benchmarks.jar PJUG19 -f 1 -p initialCapacity=10 \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-jvmArgs "-XX:+UnlockCommercialFeatures -XX:+FlightRecorder \<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-XX:StartFlightRecording=delay=20s,duration=20s,filename=prof.jfr \<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.inline-highlighted-thin[-XX:+UnlockDiagnosticVMOptions -XX:+DebugNonSafepoints]"
+]]]]
+--
+.right-column-incremental[.jmc-image[
+![JMC profile](prof2.png)
+]]
+
+
+
+
+---
+class: center
+.vcenter[.recap-top-padding[
+## Recap
+]]
+--
+.vcenter[
+### JMH golden rule #1
+Always return output (or use Blackhole)<br>
+in order to prevent dead code elimination
+]
+--
+.vcenter[
+### JMH golden rule #2
+Always read input from state objects<br>
+in order to prevent constant folding
+]
+--
+.vcenter[
+### Have fun and profit!
+]
+
+
+---
+.left-column[
+## Excellent resources
+]
+.right-column[.references[
+
+http://openjdk.java.net/projects/code-tools/jmh
+
+http://hg.openjdk.java.net/code-tools/jmh/file/tip/jmh-samples/src/main/java/org/openjdk/jmh/samples
+
+JMH javadocs
+
+java -jar target/benchmarks.jar -h
+
+http://shipilev.net
+
+http://psy-lob-saw.blogspot.com/p/jmh-related-posts.html
+
+http://hirt.se
+]]
+
+
+
+---
+.left-column[
+## The fine print
+]
+.right-column[.fine-print[
+No CPUs were harmed during this presentation
+
+.extra-top-padding[
+Benchmarks were performed on
+
+* Intel Core i5-3427U CPU @ 1.80GHz (MacBook Air, Mid 2012)
+
+* Windows 7
+
+* Oracle JDK 8u25
+
+* YMMV
+]
+]]
+
+
+</textarea>
+<script src="//gnab.github.io/remark/downloads/remark-latest.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var hljs = remark.highlighter.engine;
+</script>
+<script src="//gnab.github.io/remark/remark.language.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var slideshow = remark.create({
+      highlightStyle: 'sunburst',
+      highlightLanguage: 'java'
+    }) ;
+</script>
+</body>
+</html>

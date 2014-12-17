@@ -1,0 +1,467 @@
+Hottest code regions (>10.00% "cycles" events):
+....[Hottest Region 1]..............................................................................
+ [0x7f63f11abc43:0x7f63f11abff1] in org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub
+
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                                                                  ;   {runtime_call}
+                    0x00007f63f11abc30: mov    %rax,%r8
+                    0x00007f63f11abc33: jmpq   0x00007f63f11abf28
+                    0x00007f63f11abc38: mov    %esi,%r8d
+                    0x00007f63f11abc3b: jmpq   0x00007f63f11abe47
+                    0x00007f63f11abc40: mov    %r11,%rdx
+  0.67%    0.91%    0x00007f63f11abc43: mov    %r9,0x28(%rsp)
+                    0x00007f63f11abc48: mov    %r14,(%rsp)
+                    0x00007f63f11abc4c: mov    %r13,0x10(%rsp)    ;*invokevirtual newArrayList
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  0.01%    0.07%    0x00007f63f11abc51: mov    0x20(%rsp),%rsi
+                    0x00007f63f11abc56: nop
+                    0x00007f63f11abc57: callq  0x00007f63f1045d60  ; OopMap{[0]=Oop [8]=Oop [16]=Oop [32]=Oop off=1020}
+                                                                  ;*invokevirtual consume
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@19 (line 158)
+                                                                  ;   {optimized virtual_call}
+                    0x00007f63f11abc5c: mov    (%rsp),%r14
+  0.02%    0.05%    0x00007f63f11abc60: movzbl 0x94(%r14),%r10d   ;*getfield isDone
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@29 (line 160)
+                    0x00007f63f11abc68: add    $0x1,%rbp          ; OopMap{r14=Oop [8]=Oop [16]=Oop [32]=Oop off=1036}
+                                                                  ;*ifeq
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@32 (line 160)
+                    0x00007f63f11abc6c: test   %eax,0x15f3438e(%rip)        # 0x00007f64070e0000
+                                                                  ;   {poll}
+  0.06%    0.02%    0x00007f63f11abc72: test   %r10d,%r10d
+                    0x00007f63f11abc75: jne    0x00007f63f11ac20e  ;*aload
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@13 (line 158)
+                    0x00007f63f11abc7b: mov    0x60(%r15),%r11
+  0.03%             0x00007f63f11abc7f: mov    %r11,%r10
+                    0x00007f63f11abc82: add    $0x18,%r10
+                    0x00007f63f11abc86: cmp    0x70(%r15),%r10
+  0.03%    0.03%    0x00007f63f11abc8a: jae    0x00007f63f11ac065
+                    0x00007f63f11abc90: mov    %r10,0x60(%r15)
+                    0x00007f63f11abc94: prefetchnta 0x100(%r10)
+  0.02%    0.04%    0x00007f63f11abc9c: mov    0x28(%rsp),%r9
+                    0x00007f63f11abca1: mov    0xa8(%r9),%r10
+                    0x00007f63f11abca8: mov    %r10,(%r11)
+  0.08%    0.13%    0x00007f63f11abcab: movl   $0x2000323a,0x8(%r11)  ;   {metadata(&apos;java/util/ArrayList&apos;)}
+                    0x00007f63f11abcb3: mov    %r12d,0xc(%r11)
+                    0x00007f63f11abcb7: mov    %r12,0x10(%r11)    ;*new  ; - org.example.PJUG19::newArrayList@0 (line 40)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  0.01%    0.07%    0x00007f63f11abcbb: mov    0x10(%rsp),%r13
+                    0x00007f63f11abcc0: mov    0xc(%r13),%edx     ;*getfield initialCapacity
+                                                                  ; - org.example.PJUG19::newArrayList@5 (line 40)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abcc4: test   %edx,%edx
+  0.14%    0.16%    0x00007f63f11abcc6: jle    0x00007f63f11ac1d0  ;*ifle
+                                                                  ; - java.util.ArrayList::&lt;init&gt;@5 (line 151)
+                                                                  ; - org.example.PJUG19::newArrayList@8 (line 40)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abccc: cmp    $0x40000,%edx
+                    0x00007f63f11abcd2: ja     0x00007f63f11ac090
+  0.05%    0.06%    0x00007f63f11abcd8: mov    0x60(%r15),%r8
+                    0x00007f63f11abcdc: movslq %edx,%rcx
+                    0x00007f63f11abcdf: shl    $0x2,%rcx
+  0.02%    0.04%    0x00007f63f11abce3: add    $0x17,%rcx
+                    0x00007f63f11abce7: mov    %rcx,%r10
+                    0x00007f63f11abcea: and    $0xfffffffffffffff8,%r10
+  0.03%    0.06%    0x00007f63f11abcee: mov    %r8,%rbx
+                    0x00007f63f11abcf1: add    %r10,%rbx
+                    0x00007f63f11abcf4: cmp    0x70(%r15),%rbx
+  0.03%    0.06%    0x00007f63f11abcf8: jae    0x00007f63f11ac090
+                    0x00007f63f11abcfe: mov    %rbx,0x60(%r15)
+                    0x00007f63f11abd02: prefetchnta 0x100(%rbx)
+  0.02%    0.03%    0x00007f63f11abd09: movq   $0x1,(%r8)
+                    0x00007f63f11abd10: prefetchnta 0x140(%rbx)
+                    0x00007f63f11abd17: movl   $0x20001e50,0x8(%r8)  ;   {metadata(&apos;java/lang/Object&apos;[])}
+  0.05%             0x00007f63f11abd1f: mov    %edx,0xc(%r8)
+                    0x00007f63f11abd23: prefetchnta 0x180(%rbx)
+                    0x00007f63f11abd2a: mov    %r8,%rdi
+  0.03%             0x00007f63f11abd2d: add    $0x10,%rdi
+                    0x00007f63f11abd31: shr    $0x3,%rcx
+                    0x00007f63f11abd35: add    $0xfffffffffffffffe,%rcx
+  0.10%    0.11%    0x00007f63f11abd39: xor    %rax,%rax
+  0.48%    0.24%    0x00007f63f11abd3c: rep stos %rax,%es:(%rdi)  ;*anewarray
+                                                                  ; - java.util.ArrayList::&lt;init&gt;@10 (line 152)
+                                                                  ; - org.example.PJUG19::newArrayList@8 (line 40)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  0.05%    0.02%    0x00007f63f11abd3f: mov    %r11,%r10
+  0.05%    0.01%    0x00007f63f11abd42: mov    %r8,%rcx
+                    0x00007f63f11abd45: mov    %ecx,0x14(%r11)
+                    0x00007f63f11abd49: shr    $0x9,%r10
+  0.05%    0.02%    0x00007f63f11abd4d: movabs $0x7f6403c1a000,%rbx
+                    0x00007f63f11abd57: mov    %r12b,(%rbx,%r10,1)  ;*goto
+                                                                  ; - java.util.ArrayList::&lt;init&gt;@30 (line 154)
+                                                                  ; - org.example.PJUG19::newArrayList@8 (line 40)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abd5b: xor    %esi,%esi
+  0.06%    0.04%    0x00007f63f11abd5d: xor    %ebx,%ebx
+                    0x00007f63f11abd5f: jmp    0x00007f63f11abdba
+                    0x00007f63f11abd61: nopl   0x0(%rax,%rax,1)
+                    0x00007f63f11abd69: nopl   0x0(%rax)
+  2.04%    1.39%    0x00007f63f11abd70: mov    %rdx,%r8           ;*return
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@25 (line 236)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  0.41%    0.14%    0x00007f63f11abd73: mov    0xc(%r8),%edx
+  2.10%    1.60%    0x00007f63f11abd77: cmp    %edx,%edi
+  1.88%    0.66%    0x00007f63f11abd79: jae    0x00007f63f11ac005
+                    0x00007f63f11abd7f: mov    0x8(%r8),%edx
+  1.94%    0.82%    0x00007f63f11abd83: cmp    $0x20001e50,%edx   ;   {metadata(&apos;java/lang/Object&apos;[])}
+  1.72%    0.85%    0x00007f63f11abd89: jne    0x00007f63f11ac035
+                    0x00007f63f11abd8f: lea    0x10(%r8,%rdi,4),%rcx
+  2.13%    1.67%    0x00007f63f11abd94: mov    %r10d,(%rcx)
+  1.88%    1.61%    0x00007f63f11abd97: mov    %rcx,%r10
+                    0x00007f63f11abd9a: shr    $0x9,%r10
+  1.90%    2.50%    0x00007f63f11abd9e: movabs $0x7f6403c1a000,%rcx
+  1.82%    2.57%    0x00007f63f11abda8: mov    %r12b,(%rcx,%r10,1)  ;*aastore
+                                                                  ; - java.util.ArrayList::add@26 (line 459)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abdac: inc    %ebx               ;*iinc
+                                                                  ; - org.example.PJUG19::newArrayList@31 (line 41)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  1.96%    2.54%    0x00007f63f11abdae: cmp    $0x64,%ebx
+  5.27%    6.95%    0x00007f63f11abdb1: jge    0x00007f63f11abc40  ;*if_icmpge
+                                                                  ; - org.example.PJUG19::newArrayList@17 (line 41)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abdb7: mov    %r8,%rcx           ;*aload_1
+                                                                  ; - org.example.PJUG19::newArrayList@20 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  3.68%    4.95%    0x00007f63f11abdba: inc    %esi               ;*iadd
+                                                                  ; - java.util.ArrayList::add@6 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  1.92%    2.14%    0x00007f63f11abdbc: movabs $0x89a0cbe8,%r10   ;   {oop(a &apos;java/lang/Object&apos;[0] )}
+                    0x00007f63f11abdc6: cmp    %r10,%r8
+  2.18%    2.81%    0x00007f63f11abdc9: je     0x00007f63f11abfb2  ;*aload_0
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@17 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  2.11%    2.29%    0x00007f63f11abdcf: mov    0xc(%r11),%r10d    ;*getfield modCount
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@2 (line 231)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abdd3: inc    %r10d
+  1.87%    2.87%    0x00007f63f11abdd6: mov    %r10d,0xc(%r11)    ;*putfield modCount
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@7 (line 231)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  1.79%    2.50%    0x00007f63f11abdda: test   %r8,%r8
+                    0x00007f63f11abddd: je     0x00007f63f11abff6
+  3.46%    5.10%    0x00007f63f11abde3: movabs $0x89a0cbf8,%r10   ;   {oop(a &apos;java/lang/Integer&apos;[256] )}
+  3.67%    5.23%    0x00007f63f11abded: mov    0x210(%r10,%rbx,4),%r10d
+  1.92%    2.45%    0x00007f63f11abdf5: mov    0xc(%r8),%edx      ;*arraylength
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@15 (line 234)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abdf9: mov    %esi,%edi
+  1.96%    2.37%    0x00007f63f11abdfb: sub    %edx,%edi
+  1.81%    2.43%    0x00007f63f11abdfd: test   %edi,%edi
+                    0x00007f63f11abdff: jg     0x00007f63f11abe31  ;*ifle
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@17 (line 234)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  1.93%    2.36%    0x00007f63f11abe01: mov    0x10(%r11),%edi    ;*getfield size
+                                                                  ; - java.util.ArrayList::add@16 (line 459)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  2.13%    2.44%    0x00007f63f11abe05: mov    0x14(%r11),%edx    ;*getfield elementData
+                                                                  ; - java.util.ArrayList::add@11 (line 459)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abe09: mov    %edi,%esi
+  1.72%    2.12%    0x00007f63f11abe0b: inc    %esi               ;*iadd
+                                                                  ; - java.util.ArrayList::add@21 (line 459)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  1.94%    2.11%    0x00007f63f11abe0d: mov    %esi,0x10(%r11)    ;*putfield size
+                                                                  ; - java.util.ArrayList::add@22 (line 459)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abe11: test   %edx,%edx
+  1.72%    1.91%    0x00007f63f11abe13: jne    0x00007f63f11abd70  ;*aastore
+                                                                  ; - java.util.ArrayList::add@26 (line 459)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abe19: mov    $0xfffffff6,%esi
+                    0x00007f63f11abe1e: mov    %edi,%ebp
+                    0x00007f63f11abe20: mov    %r10d,(%rsp)
+                    0x00007f63f11abe24: data32 xchg %ax,%ax
+                    0x00007f63f11abe27: callq  0x00007f63f1004ee0  ; OopMap{[0]=NarrowOop off=1484}
+                                                                  ;*aastore
+                                                                  ; - java.util.ArrayList::add@26 (line 459)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                                                                  ;   {runtime_call}
+                    0x00007f63f11abe2c: callq  0x00007f6405e273b0  ;*aastore
+                                                                  ; - java.util.ArrayList::add@26 (line 459)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                                                                  ;   {runtime_call}
+  0.06%    0.16%    0x00007f63f11abe31: mov    %edx,%r8d
+  4.67%    5.65%    0x00007f63f11abe34: sar    %r8d
+                    0x00007f63f11abe37: add    %edx,%r8d          ;*iadd
+                                                                  ; - java.util.ArrayList::grow@10 (line 255)
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@22 (line 235)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abe3a: mov    %r8d,%edi
+  0.18%    0.03%    0x00007f63f11abe3d: sub    %esi,%edi
+                    0x00007f63f11abe3f: test   %edi,%edi
+                    0x00007f63f11abe41: jl     0x00007f63f11abc38  ;*iload_3
+                                                                  ; - java.util.ArrayList::grow@20 (line 258)
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@22 (line 235)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  0.25%    0.16%    0x00007f63f11abe47: mov    %r8d,%edi
+                    0x00007f63f11abe4a: add    $0x80000009,%edi
+                    0x00007f63f11abe50: test   %edi,%edi
+  0.18%    0.36%    0x00007f63f11abe52: jg     0x00007f63f11ac143  ;*aload_0
+                                                                  ; - java.util.ArrayList::grow@32 (line 261)
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@22 (line 235)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abe58: mov    0x8(%rcx),%edx
+                    0x00007f63f11abe5b: movabs $0x0,%rsi
+  0.21%    0.38%    0x00007f63f11abe65: lea    (%rsi,%rdx,8),%rsi
+                    0x00007f63f11abe69: mov    0x68(%rsi),%rax    ;*invokevirtual getClass
+                                                                  ; - java.util.Arrays::copyOf@3 (line 3181)
+                                                                  ; - java.util.ArrayList::grow@38 (line 261)
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@22 (line 235)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abe6d: test   %r8d,%r8d
+  0.26%    0.28%    0x00007f63f11abe70: jl     0x00007f63f11ac0f8
+                    0x00007f63f11abe76: mov    %r10d,0x48(%rsp)
+                    0x00007f63f11abe7b: mov    %ebx,0x44(%rsp)
+  0.26%    0.30%    0x00007f63f11abe7f: mov    %r11,0x38(%rsp)
+                    0x00007f63f11abe84: mov    %rbp,0x30(%rsp)
+                    0x00007f63f11abe89: mov    %r9,0x28(%rsp)
+  0.22%    0.29%    0x00007f63f11abe8e: mov    %r14,0x18(%rsp)
+                    0x00007f63f11abe93: mov    %r13,0x10(%rsp)
+                    0x00007f63f11abe98: mov    0xc(%rcx),%r10d
+  0.25%    0.34%    0x00007f63f11abe9c: mov    %ecx,0x40(%rsp)
+                    0x00007f63f11abea0: mov    %r8d,0x4c(%rsp)
+                    0x00007f63f11abea5: cmp    %r8d,%r10d
+  0.16%    0.32%    0x00007f63f11abea8: mov    %r8d,%r11d
+                    0x00007f63f11abeab: cmovl  %r10d,%r11d        ;*invokestatic copyOf
+                                                                  ; - java.util.Arrays::copyOf@6 (line 3181)
+                                                                  ; - java.util.ArrayList::grow@38 (line 261)
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@22 (line 235)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abeaf: mov    %r11d,0x50(%rsp)
+  0.26%    0.36%    0x00007f63f11abeb4: movslq %r8d,%r10
+                    0x00007f63f11abeb7: mov    %rcx,%rbp          ;*getfield elementData
+                                                                  ; - java.util.ArrayList::grow@34 (line 261)
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@22 (line 235)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abeba: shl    $0x2,%r10
+  0.60%    0.92%    0x00007f63f11abebe: add    $0x17,%r10
+                    0x00007f63f11abec2: mov    %r10,%r11
+                    0x00007f63f11abec5: shr    $0x3,%r11
+  0.18%    0.38%    0x00007f63f11abec9: mov    %r11,0x58(%rsp)
+                    0x00007f63f11abece: mov    0x4c(%rsp),%r11d
+                    0x00007f63f11abed3: cmp    $0x40000,%r11d
+  0.27%    0.33%    0x00007f63f11abeda: ja     0x00007f63f11abc20
+                    0x00007f63f11abee0: mov    0x60(%r15),%r8
+                    0x00007f63f11abee4: and    $0xfffffffffffffff8,%r10
+  0.19%    0.11%    0x00007f63f11abee8: mov    %r8,%r11
+                    0x00007f63f11abeeb: add    %r10,%r11
+                    0x00007f63f11abeee: cmp    0x70(%r15),%r11
+  0.19%    0.01%    0x00007f63f11abef2: jae    0x00007f63f11abc20
+                    0x00007f63f11abef8: mov    %r11,0x60(%r15)
+                    0x00007f63f11abefc: prefetchnta 0x100(%r11)
+  0.23%    0.15%    0x00007f63f11abf04: movq   $0x1,(%r8)
+                    0x00007f63f11abf0b: mov    %edx,0x8(%r8)
+                    0x00007f63f11abf0f: mov    0x4c(%rsp),%r10d
+  0.21%    0.41%    0x00007f63f11abf14: mov    %r10d,0xc(%r8)
+                    0x00007f63f11abf18: prefetchnta 0x140(%r11)
+                    0x00007f63f11abf20: prefetchnta 0x180(%r11)
+  0.23%    0.34%    0x00007f63f11abf28: mov    %r8,%rsi
+                    0x00007f63f11abf2b: add    $0x10,%rsi
+                    0x00007f63f11abf2f: mov    0x50(%rsp),%r10d
+  0.20%    0.41%    0x00007f63f11abf34: test   %r10d,%r10d
+                    0x00007f63f11abf37: je     0x00007f63f11ac0de
+                    0x00007f63f11abf3d: mov    %r8,%rbx
+  0.22%    0.33%    0x00007f63f11abf40: movslq %r10d,%rdx
+                    0x00007f63f11abf43: cmp    0x4c(%rsp),%r10d
+                    0x00007f63f11abf48: jl     0x00007f63f11abfc4
+  0.20%    0.32%    0x00007f63f11abf4a: mov    0x40(%rsp),%r11d
+                    0x00007f63f11abf4f: lea    0x10(%r11),%rdi
+  0.27%    0.33%    0x00007f63f11abf53: movabs $0x7f63f1051f20,%r10
+                    0x00007f63f11abf5d: callq  *%r10
+  0.06%    0.03%    0x00007f63f11abf60: mov    %rbx,%r8           ;*invokestatic copyOf
+                                                                  ; - java.util.Arrays::copyOf@6 (line 3181)
+                                                                  ; - java.util.ArrayList::grow@38 (line 261)
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@22 (line 235)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  0.26%    0.16%    0x00007f63f11abf63: mov    0x38(%rsp),%r11
+                    0x00007f63f11abf68: mov    0x10(%r11),%edi    ;*getfield size
+                                                                  ; - java.util.ArrayList::add@16 (line 459)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  0.02%    0.01%    0x00007f63f11abf6c: mov    %r8,%r10
+  0.34%    0.11%    0x00007f63f11abf6f: mov    %r10d,0x14(%r11)   ;*putfield elementData
+                                                                  ; - java.util.ArrayList::grow@41 (line 261)
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@22 (line 235)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abf73: mov    %edi,%esi
+  0.01%    0.02%    0x00007f63f11abf75: inc    %esi               ;*iadd
+                                                                  ; - java.util.ArrayList::add@21 (line 459)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  0.30%    0.12%    0x00007f63f11abf77: mov    %esi,0x10(%r11)    ;*putfield size
+                                                                  ; - java.util.ArrayList::add@22 (line 459)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abf7b: mov    %r11,%r10
+  0.00%    0.02%    0x00007f63f11abf7e: shr    $0x9,%r10
+  0.21%    0.11%    0x00007f63f11abf82: movabs $0x7f6403c1a000,%r9
+  0.00%             0x00007f63f11abf8c: mov    %r12b,(%r9,%r10,1)  ;*putfield elementData
+                                                                  ; - java.util.ArrayList::grow@41 (line 261)
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@22 (line 235)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  0.01%    0.01%    0x00007f63f11abf90: mov    0x10(%rsp),%r13
+  0.28%    0.06%    0x00007f63f11abf95: mov    0x18(%rsp),%r14
+                    0x00007f63f11abf9a: mov    0x28(%rsp),%r9
+           0.03%    0x00007f63f11abf9f: mov    0x30(%rsp),%rbp
+  0.27%    0.12%    0x00007f63f11abfa4: mov    0x44(%rsp),%ebx
+                    0x00007f63f11abfa8: mov    0x48(%rsp),%r10d
+  0.01%    0.01%    0x00007f63f11abfad: jmpq   0x00007f63f11abd73
+                    0x00007f63f11abfb2: cmp    $0xa,%esi
+                    0x00007f63f11abfb5: mov    $0xa,%r10d
+                    0x00007f63f11abfbb: cmovle %r10d,%esi         ;*invokestatic max
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@13 (line 224)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+                    0x00007f63f11abfbf: jmpq   0x00007f63f11abdcf
+  0.17%    0.36%    0x00007f63f11abfc4: mov    %rdx,%r10
+                    0x00007f63f11abfc7: shl    $0x2,%r10
+                    0x00007f63f11abfcb: add    $0x10,%r10
+  0.19%    0.37%    0x00007f63f11abfcf: mov    %r10,%r11
+                    0x00007f63f11abfd2: and    $0xfffffffffffffffb,%r11
+                    0x00007f63f11abfd6: mov    %r8,%rdi
+  0.22%    0.34%    0x00007f63f11abfd9: add    %r11,%rdi
+                    0x00007f63f11abfdc: shr    $0x3,%r10
+                    0x00007f63f11abfe0: mov    0x58(%rsp),%r11
+  0.25%    0.14%    0x00007f63f11abfe5: sub    %r10,%r11
+                    0x00007f63f11abfe8: mov    %r11,%rcx
+                    0x00007f63f11abfeb: xor    %rax,%rax
+  5.43%    2.96%    0x00007f63f11abfee: rep stos %rax,%es:(%rdi)  ;*invokestatic copyOf
+                                                                  ; - java.util.Arrays::copyOf@6 (line 3181)
+                                                                  ; - java.util.ArrayList::grow@38 (line 261)
+                                                                  ; - java.util.ArrayList::ensureExplicitCapacity@22 (line 235)
+                                                                  ; - java.util.ArrayList::ensureCapacityInternal@19 (line 227)
+                                                                  ; - java.util.ArrayList::add@7 (line 458)
+                                                                  ; - org.example.PJUG19::newArrayList@25 (line 42)
+                                                                  ; - org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub@16 (line 158)
+  0.49%    0.56%    0x00007f63f11abff1: jmpq   0x00007f63f11abf4a
+                    0x00007f63f11abff6: mov    $0xfffffff6,%esi
+                    0x00007f63f11abffb: callq  0x00007f63f1004ee0  ; OopMap{off=1952}
+                                                                  ;*arraylength
+....................................................................................................
+ 81.52%   89.86%  <total for region 1>
+
+....[Hottest Region 2]..............................................................................
+ [0x7f63f1051f20:0x7f63f1051f92] in [unknown] (perf-877.map)
+
+ <no assembly is recorded, native region>
+....................................................................................................
+ 15.61%    8.12%  <total for region 2>
+
+....[Hottest Regions]...............................................................................
+ 81.52%   89.86%  [0x7f63f11abc43:0x7f63f11abff1] in org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub
+ 15.61%    8.12%  [0x7f63f1051f20:0x7f63f1051f92] in [unknown] (perf-877.map)
+  0.97%    0.40%  [0x0:0x0] in <kernel>
+  0.48%    0.47%  [0x7f6405f301b0:0x7f6405f301fe] in StringTable::unlink_or_oops_do(BoolObjectClosure*, OopClosure*, int*, int*) (libjvm.so)
+  0.27%    0.35%  [0x7f63f1194980:0x7f63f11949b9] in org.openjdk.jmh.infra.Blackhole::consume
+  0.15%    0.08%  [0x7f6405d0bb50:0x7f6405d0bb59] in SpinPause (libjvm.so)
+  0.05%    0.19%  [0x7f6405f30237:0x7f6405f3024d] in StringTable::unlink_or_oops_do(BoolObjectClosure*, OopClosure*, int*, int*) (libjvm.so)
+  0.05%           [0x7f6405e95788:0x7f6405e9579e] in PSScavengeKlassClosure::do_klass(Klass*) (libjvm.so)
+  0.02%    0.01%  [0x7f6405f3e360:0x7f6405f3e360] in ParallelTaskTerminator::offer_termination(TerminatorTerminator*) (libjvm.so)
+  0.01%    0.00%  [0x7f6405939abb:0x7f6405939ac6] in CardTableExtension::scavenge_contents_parallel(ObjectStartArray*, MutableSpace*, HeapWord*, PSPromotionManager*, unsigned int, unsigned int) (libjvm.so)
+  0.01%           [0x7f6405b31a11:0x7f6405b31a1c] in HandleMark::~HandleMark() (libjvm.so)
+  0.01%    0.03%  [0x7f6405e94a60:0x7f6405e94a70] in PSIsAliveClosure::do_object_b(oopDesc*) (libjvm.so)
+  0.01%           [0x7f6405e957d1:0x7f6405e95801] in StealTask::name(); ScavengeRootsTask::name(); OldToYoungRootsTask::name() (libjvm.so)
+  0.01%           [0x7f6405f696c1:0x7f6405f696c1] in Thread::muxAcquire(long volatile*, char const*) (libjvm.so)
+  0.01%           [0x7f6405f74a41:0x7f6405f74a41] in ThreadLocalAllocBuffer::clear_before_allocation() (libjvm.so)
+  0.01%           [0x7f6406cb2540:0x7f6406cb2543] in pthread_getspecific (libpthread-2.17.so)
+  0.01%           [0x7f64059b2540:0x7f64059b2541] in CodeBlob::is_nmethod() const (libjvm.so)
+  0.01%           [0x7f6405af54d7:0x7f6405af54d7] in GCTaskManager::get_task(unsigned int) (libjvm.so)
+  0.01%           [0x7f6405af6b8e:0x7f6405af6b9d] in GCTaskThread::run() (libjvm.so)
+  0.01%    0.00%  [0x7f6405b6068e:0x7f6405b6068e] in InstanceKlass::allocate_objArray(int, int, Thread*) (libjvm.so)
+  0.72%    0.49%  <...other 194 warm regions...>
+....................................................................................................
+ 99.99%  100.00%  <totals>
+
+....[Hottest Methods (after inlining)]..............................................................
+ 81.52%   89.86%  org.example.generated.PJUG19_newArrayList::newArrayList_avgt_jmhStub
+ 15.67%    8.13%  [unknown] (perf-877.map)
+  0.97%    0.40%  <kernel>
+  0.54%    0.66%  StringTable::unlink_or_oops_do(BoolObjectClosure*, OopClosure*, int*, int*) (libjvm.so)
+  0.27%    0.35%  org.openjdk.jmh.infra.Blackhole::consume
+  0.15%    0.08%  SpinPause (libjvm.so)
+  0.05%           PSScavengeKlassClosure::do_klass(Klass*) (libjvm.so)
+  0.04%    0.01%  CardTableExtension::scavenge_contents_parallel(ObjectStartArray*, MutableSpace*, HeapWord*, PSPromotionManager*, unsigned int, unsigned int) (libjvm.so)
+  0.03%    0.04%  vfprintf (libc-2.17.so)
+  0.03%    0.01%  ParallelTaskTerminator::offer_termination(TerminatorTerminator*) (libjvm.so)
+  0.02%    0.01%  __strncpy_sse2 (libc-2.17.so)
+  0.02%           ThreadLocalAllocBuffer::clear_before_allocation() (libjvm.so)
+  0.02%           GenericTaskQueueSet<OverflowTaskQueue<StarTask, (unsigned short)256, 131072u>, (unsigned short)256>::steal_best_of_2(unsigned int, int*, StarTask&) (libjvm.so)
+  0.01%    0.03%  PSIsAliveClosure::do_object_b(oopDesc*) (libjvm.so)
+  0.01%           StealTask::name(); ScavengeRootsTask::name(); OldToYoungRootsTask::name() (libjvm.so)
+  0.01%           Thread::muxAcquire(long volatile*, char const*) (libjvm.so)
+  0.01%    0.00%  Monitor::unlock() (libjvm.so)
+  0.01%           HandleMark::~HandleMark() (libjvm.so)
+  0.01%           pthread_getspecific (libpthread-2.17.so)
+  0.01%           GCTaskManager::get_task(unsigned int) (libjvm.so)
+  0.55%    0.21%  <...other 93 warm methods...>
+....................................................................................................
+ 99.99%   99.79%  <totals>
+
+....[Distribution by Area]..........................................................................
+ 81.80%   90.20%  <generated code>
+ 15.67%    8.13%  <native code in (perf-877.map)>
+  1.39%    1.11%  <native code in (libjvm.so)>
+  0.97%    0.40%  <kernel>
+  0.12%    0.15%  <native code in (libc-2.17.so)>
+  0.03%    0.01%  <native code in (libpthread-2.17.so)>
+  0.01%           <native code in (hsdis-amd64.so)>
+  0.00%           <native code in ([vdso])>
+....................................................................................................
+ 99.99%  100.00%  <totals>
