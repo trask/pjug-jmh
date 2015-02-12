@@ -1294,15 +1294,16 @@ Can only be used outside of the bootstrap class loader with
 ]
 --
 .right-column[.monospace[.section-top-padding[.smaller[
-java -jar target/benchmarks.jar PJUG19 -f 1 .inline-highlighted-thin[-p initialCapacity=10] \<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.inline-highlighted-thin[-prof stack]
+java .inline-highlighted-thin[-Djmh.stack.detailLine=true] -jar target/benchmarks.jar PJUG19 \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -f 1 .inline-highlighted-thin[-p initialCapacity=10] .inline-highlighted-thin[-prof stack]
 ]]]]
 --
 .right-column-incremental[
 ```bash
- 99.2%  99.3% org.example.generated.PJUG19_newArrayList.newArrayList_avgt_jmhStub
-  0.6%   0.6% java.util.Arrays.copyOf
-  0.1%   0.1% sun.misc.Unsafe.getIntVolatile
+ 98.9%  98.9% [...].generated.PJUG19_newArrayList.newArrayList_avgt_jmhStub:158
+  0.9%   0.9% java.util.Arrays.copyOf:3181
+  0.2%   0.2% [...].generated.PJUG19_newArrayList.newArrayList_avgt_jmhStub:160
+  0.1%   0.1% [...].generated.PJUG19_newArrayList.newArrayList_AverageTime:128
 ```
 ]
 --
