@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Group;
+import org.openjdk.jmh.annotations.GroupThreads;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
@@ -34,12 +35,14 @@ public class PJUG17 {
     private volatile long y;
     
     @Group
+    @GroupThreads(1)
     @Benchmark
     public long incrementX() {
         return x++;
     }
 
     @Group
+    @GroupThreads(2)
     @Benchmark
     public long readY() {
         return y;

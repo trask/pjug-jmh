@@ -10,7 +10,6 @@ Environment:
 Benchmark                      (initialCapacity)  Mode  Samples    Score    Error  Units
 o.e.PJUG01.newArrayList                      N/A  avgt      200    0.382 ±  0.007  ns/op
 o.e.PJUG02.newArrayList                      N/A  avgt      200    5.618 ±  0.122  ns/op
-o.e.PJUG03.newArrayList                      N/A  avgt      200    5.479 ±  0.020  ns/op
 o.e.PJUG04.logarithm                         N/A  avgt      200    3.027 ±  0.010  ns/op
 o.e.PJUG05.logarithm                         N/A  avgt      200   35.747 ±  0.065  ns/op
 o.e.PJUG06.logarithm                         N/A  avgt      200    3.010 ±  0.008  ns/op
@@ -25,12 +24,12 @@ o.e.PJUG13.harnessOverhead                   N/A  avgt      200    3.798 ±  0.0
 o.e.PJUG14.reflection                        N/A  avgt      200  461.169 ± 26.632  ns/op
 o.e.PJUG15.reflection                        N/A  avgt      200    8.415 ±  0.036  ns/op
 o.e.PJUG16.reflection                        N/A  avgt      200    7.075 ±  0.015  ns/op
-o.e.PJUG17.group                             N/A  avgt      200   20.625 ±  0.342  ns/op
-o.e.PJUG17.group:incrementX                  N/A  avgt      200   30.351 ±  0.763  ns/op
-o.e.PJUG17.group:readY                       N/A  avgt      200   10.899 ±  0.342  ns/op
-o.e.PJUG18.group                             N/A  avgt      200    8.425 ±  0.209  ns/op
-o.e.PJUG18.group:incrementX                  N/A  avgt      200   13.414 ±  0.423  ns/op
-o.e.PJUG18.group:readY                       N/A  avgt      200    3.437 ±  0.042  ns/op
+o.e.PJUG17.group                             N/A  avgt      200   19.865 ±  1.407  ns/op
+o.e.PJUG17.group:incrementX                  N/A  avgt      200   36.089 ±  2.501  ns/op
+o.e.PJUG17.group:readY                       N/A  avgt      200   11.753 ±  0.878  ns/op
+o.e.PJUG18.group                             N/A  avgt      200    7.853 ±  0.101  ns/op
+o.e.PJUG18.group:incrementX                  N/A  avgt      200   14.631 ±  0.268  ns/op
+o.e.PJUG18.group:readY                       N/A  avgt      200    4.465 ±  0.057  ns/op
 o.e.PJUG19.newArrayList                        2  avgt      200  826.805 ±  2.626  ns/op
 o.e.PJUG19.newArrayList                        4  avgt      200  761.433 ±  2.938  ns/op
 o.e.PJUG19.newArrayList                        8  avgt      200  683.512 ±  3.054  ns/op
