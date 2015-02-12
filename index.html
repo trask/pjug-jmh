@@ -482,35 +482,6 @@ java -jar target/benchmarks.jar PJUG02 -f 1 .inline-highlighted[-prof gc]
 
 ---
 .left-column[
-## Rule #1: (The blackhole option)
-]
-.right-column[
-```
-  public class PJUG03 {
-
-      @Benchmark
-      public void newArrayList(Blackhole blackhole) {
-*         blackhole.consume(new ArrayList<>());
-      }
-  }
-```
-]
---
-.right-column-incremental[.monospace[.section-top-padding[.smaller[
-java -jar target/benchmarks.jar PJUG03
-]]]]
---
-.right-column-incremental[
-```bash
-  Benchmark                  Score   Error  Units
-  o.e.PJUG03.newArrayList    5.479 &plusmn; 0.020  ns/op
-```
-]
-
-
-
----
-.left-column[
 ## What's the problem with this?
 ]
 .right-column[
@@ -639,7 +610,7 @@ class: center, middle
 .vcenter[
 ## JMH Golden Rules
 
-### #1: Always return output .h3smaller[(or use Blackhole)]
+### #1: Always return output
 
 to prevent dead code elimination
 
@@ -1140,12 +1111,14 @@ class: center, middle
       private volatile long y;
 
 *     @Group
+*     @GroupThreads(1)
       @Benchmark
       public long incrementX() {
           return x++;
       }
 
 *     @Group
+*     @GroupThreads(2)
       @Benchmark
       public long readY() {
           return y;
@@ -1157,8 +1130,8 @@ class: center, middle
 .right-column-incremental[
 ```bash
   Benchmark                       Score   Error  Units
-  o.e.PJUG17.group:incrementX    30.351 &plusmn; 0.763  ns/op
-  o.e.PJUG17.group:readY         10.899 &plusmn; 0.342  ns/op
+  o.e.PJUG17.group:incrementX    36.089 &plusmn; 2.501  ns/op
+  o.e.PJUG17.group:readY         11.753 &plusmn; 0.878  ns/op
 ```
 ]
 
@@ -1178,12 +1151,14 @@ class: center, middle
       private volatile long y;
 
       @Group
+      @GroupThreads(1)
       @Benchmark
       public int incrementX() {
           return x++;
       }
 
       @Group
+      @GroupThreads(2)
       @Benchmark
       public int readY() {
           return y;
@@ -1195,10 +1170,10 @@ class: center, middle
 .right-column-incremental[
 ```bash
   Benchmark                       Score   Error  Units
-  o.e.PJUG17.group:incrementX    30.351 &plusmn; 0.763  ns/op
-* o.e.PJUG18.group:incrementX    13.414 &plusmn; 0.423  ns/op
-  o.e.PJUG17.group:readY         10.899 &plusmn; 0.342  ns/op
-* o.e.PJUG18.group:readY          3.437 &plusmn; 0.042  ns/op
+  o.e.PJUG17.group:incrementX    36.089 &plusmn; 2.501  ns/op
+* o.e.PJUG18.group:incrementX    14.631 &plusmn; 0.268  ns/op
+  o.e.PJUG17.group:readY         11.753 &plusmn; 0.878  ns/op
+* o.e.PJUG18.group:readY          4.465 &plusmn; 0.057  ns/op
 ```
 ]
 
@@ -1403,7 +1378,7 @@ class: center
 --
 .vcenter[
 ### JMH golden rule #1
-Always return output (or use Blackhole)<br>
+Always return output<br>
 in order to prevent dead code elimination
 ]
 --
