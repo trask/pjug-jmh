@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.example;
+package benchmark;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -27,16 +26,26 @@ import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 
+import com.google.common.collect.ImmutableMap;
+
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Thread)
-public class PJUG09 {
+public class Example5E {
 
     private Map<Integer, Integer> map;
 
     @Setup
     public void setup() {
-        map = new HashMap<>();
+        map = ImmutableMap.of();
+        for (int i = 0; i < 10000; i++) {
+            mapSize();
+        }
+        map = ImmutableMap.of(1, 1);
+        for (int i = 0; i < 10000; i++) {
+            mapSize();
+        }
+        map = ImmutableMap.of(1, 1, 2, 2);
     }
 
     @Benchmark

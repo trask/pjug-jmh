@@ -13,22 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.example;
+package benchmark;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
+public class Example1 {
 
-@BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.NANOSECONDS)
-public class PJUG01 {
+    public static void main(String[] args) {
+        new Example1().harness(100000000);
+    }
 
-    @Benchmark
-    public void newArrayList() {
+    void harness(int iterations) {
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < iterations; i++) {
+            benchmark();
+        }
+        long end = System.currentTimeMillis();
+        System.out.println(end - start);
+    }
+
+    void benchmark() {
         new ArrayList<>();
     }
 }

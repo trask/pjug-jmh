@@ -13,43 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.example;
+package benchmark;
 
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.Setup;
-import org.openjdk.jmh.annotations.State;
-
-import com.google.common.collect.ImmutableMap;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@State(Scope.Thread)
-public class PJUG12 {
-
-    private Map<Integer, Integer> map;
-
-    @Setup
-    public void setup() {
-        map = ImmutableMap.of();
-        for (int i = 0; i < 10000; i++) {
-            mapSize();
-        }
-        map = ImmutableMap.of(1, 1);
-        for (int i = 0; i < 10000; i++) {
-            mapSize();
-        }
-        map = ImmutableMap.of(1, 1, 2, 2);
-    }
+public class Example3A {
 
     @Benchmark
-    public int mapSize() {
-        return map.size();
+    public void newArrayList() {
+        new ArrayList<>();
     }
 }

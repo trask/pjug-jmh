@@ -13,26 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.example;
+package benchmark;
 
-import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
-public class PJUG00 {
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Mode;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
 
-    public static void main(String[] args) {
-        new PJUG00().harness(100000000);
-    }
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.NANOSECONDS)
+@State(Scope.Thread)
+public class Example4B {
 
-    void harness(int iterations) {
-        long start = System.currentTimeMillis();
-        for (int i = 0; i < iterations; i++) {
-            benchmark();
-        }
-        long end = System.currentTimeMillis();
-        System.out.println(end - start);
-    }
+    private int x = 31;
 
-    void benchmark() {
-        new HashMap<>();
+    @Benchmark
+    public double logarithm() {
+        return Math.log(x);
     }
 }

@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.example;
+package benchmark;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
@@ -24,10 +25,10 @@ import org.openjdk.jmh.annotations.OutputTimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-public class PJUG04 {
+public class Example3B {
 
     @Benchmark
-    public double logarithm() {
-        return Math.log(31);
+    public Object newArrayList() {
+        return new ArrayList<>();
     }
 }

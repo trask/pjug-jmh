@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.example;
+package benchmark;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
@@ -29,24 +28,17 @@ import org.openjdk.jmh.annotations.State;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Thread)
-public class PJUG13 {
+public class Example5A {
 
-    private String str;
-    private File file;
+    private int x;
 
     @Setup
-    public void setup() throws Exception {
-        str = null;
-        file = new File(".");
+    public void setup() {
+        x = 0;
     }
 
     @Benchmark
-    public String harnessOverhead() {
-        return str;
-    }
-
-    @Benchmark
-    public String directCall() {
-        return file.getPath();
+    public int harnessOverhead() {
+        return x;
     }
 }

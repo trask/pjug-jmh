@@ -13,22 +13,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.example;
+package benchmark;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-public class PJUG02 {
+@State(Scope.Thread)
+public class Example5D {
+
+    private Map<Integer, Integer> map;
+
+    @Setup
+    public void setup() {
+        map = new LinkedHashMap<>();
+        for (int i = 0; i < 1000; i++) {
+            mapSize();
+        }
+        map = new TreeMap<>();
+        for (int i = 0; i < 1000; i++) {
+            mapSize();
+        }
+        map = new HashMap<>();
+    }
 
     @Benchmark
-    public Object newArrayList() {
-        return new ArrayList<>();
+    public int mapSize() {
+        return map.size();
     }
 }

@@ -13,37 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.example;
+package benchmark;
 
-import java.io.File;
-import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.Setup;
-import org.openjdk.jmh.annotations.State;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@State(Scope.Thread)
-public class PJUG16 {
-    
-    private File file;
-    private Method method;
-
-    @Setup
-    public void setup() throws Exception {
-        file = new File(".");
-        method = File.class.getMethod("getPath");
-        method.setAccessible(true);
-    }
+public class Example4A {
 
     @Benchmark
-    public Object reflection() throws Exception {
-        return method.invoke(file);
+    public double logarithm() {
+        return Math.log(31);
     }
 }

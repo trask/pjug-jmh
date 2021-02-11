@@ -13,12 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.example;
+package benchmark;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.io.File;
+import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
@@ -32,25 +30,19 @@ import org.openjdk.jmh.annotations.State;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Thread)
-public class PJUG11 {
+public class Example6C {
 
-    private Map<Integer, Integer> map;
+    private File file;
+    private Method method;
 
     @Setup
-    public void setup() {
-        map = new LinkedHashMap<>();
-        for (int i = 0; i < 1000; i++) {
-            mapSize();
-        }
-        map = new TreeMap<>();
-        for (int i = 0; i < 1000; i++) {
-            mapSize();
-        }
-        map = new HashMap<>();
+    public void setup() throws Exception {
+        file = new File(".");
+        method = File.class.getMethod("getPath");
     }
 
     @Benchmark
-    public int mapSize() {
-        return map.size();
+    public Object reflection() throws Exception {
+        return method.invoke(file);
     }
 }

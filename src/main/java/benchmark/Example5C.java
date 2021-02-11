@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.example;
+package benchmark;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -31,7 +31,7 @@ import org.openjdk.jmh.annotations.State;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Thread)
-public class PJUG10 {
+public class Example5C {
 
     private Map<Integer, Integer> map;
 

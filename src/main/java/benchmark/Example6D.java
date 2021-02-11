@@ -13,38 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.example;
+package benchmark;
 
+import java.io.File;
+import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Group;
-import org.openjdk.jmh.annotations.GroupThreads;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@State(Scope.Group)
-public class PJUG17 {
-
-    private volatile long x;
-    private volatile long y;
+@State(Scope.Thread)
+public class Example6D {
     
-    @Group
-    @GroupThreads(1)
-    @Benchmark
-    public long incrementX() {
-        return x++;
+    private File file;
+    private Method method;
+
+    @Setup
+    public void setup() throws Exception {
+        file = new File(".");
+        method = File.class.getMethod("getPath");
+        method.setAccessible(true);
     }
 
-    @Group
-    @GroupThreads(2)
     @Benchmark
-    public long readY() {
-        return y;
+    public Object reflection() throws Exception {
+        return method.invoke(file);
     }
 }
